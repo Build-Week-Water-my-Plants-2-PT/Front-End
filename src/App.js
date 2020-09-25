@@ -18,12 +18,9 @@ import EditPlant from "./components/EditPlant";
 function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [cookies, setCookie] = useCookies(["token"]);
 
   return (
-    <UserContext.Provider
-      value={{ user, setUser, loggedIn, setLoggedIn, cookies, setCookie }}
-    >
+    <UserContext.Provider value={{ user, setUser, loggedIn, setLoggedIn }}>
       <Router>
         <Navigation />
         <Switch>

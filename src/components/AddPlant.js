@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { UserContext } from "../contexts/userContext";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -126,7 +127,7 @@ const AddPlant = () => {
     };
     console.log(`This is the object we're sending: ${plantData}`);
 
-    axiosWithAuth()
+    axios
       .post("https://water-my-plants-365.herokuapp.com/api/plants", plantData, {
         withCredentials: true,
       })
