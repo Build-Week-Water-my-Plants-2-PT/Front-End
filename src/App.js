@@ -5,7 +5,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import PrivateRoute from "./components/PrivateRoute";
 import { UserContext } from "./contexts/userContext";
 import LoginContainer from "./components/LoginContainer";
