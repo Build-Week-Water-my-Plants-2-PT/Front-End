@@ -102,9 +102,10 @@ const EditPlant = () => {
       nickname: formInput.nickname,
       species: formInput.type,
       H2oFrequency: formInput.frequency,
-      id: plantId,
       user_id: user.id,
     };
+
+    console.log(plantInfo);
     axiosWithAuth()
       .put(
         `https://water-my-plants-365.herokuapp.com/api/plants/${plantId}`,
