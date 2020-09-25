@@ -50,7 +50,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Register = () => {
+const Register = ({ setValue }) => {
   const classes = useStyles();
   const history = useHistory();
   const { setUser } = useContext(UserContext);
@@ -66,19 +66,21 @@ const Register = () => {
 
   const register = (e) => {
     e.preventDefault();
-    console.log(credentials);
-    console.log("Starting POST request");
+
     axios
       .post(
         "https://water-my-plants-365.herokuapp.com/api/auth/register",
         credentials
       )
       .then((res) => {
-        console.log("Successful POST request");
-        history.push("/login");
+        setCredentials({
+          username: "",
+          phone_number: "",
+          password: "",
+        });
+        setValue(1);
       })
       .catch((err) => {
-        console.log("Unsuccessful POST request");
         console.error(err);
       });
   };

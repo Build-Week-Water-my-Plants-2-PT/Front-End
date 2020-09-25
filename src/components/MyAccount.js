@@ -69,8 +69,6 @@ const MyAccount = () => {
     });
   };
 
-  console.log(formInput);
-
   const upDate = (e) => {
     e.preventDefault();
     const userData = {
@@ -80,7 +78,6 @@ const MyAccount = () => {
       phone_number: formInput.phoneNumber,
     };
 
-    console.log(`This is the userData we're sending: ${userData}`);
     axiosWithAuth()
       .put(
         `https://water-my-plants-365.herokuapp.com/users/${user.id}`,

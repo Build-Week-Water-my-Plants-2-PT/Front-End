@@ -51,7 +51,7 @@ const LoginContainer = () => {
         <Login />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Register />
+        <Register setValue={setValue} />
       </TabPanel>
     </div>
   );

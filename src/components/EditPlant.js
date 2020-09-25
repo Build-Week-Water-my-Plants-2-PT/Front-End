@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Card,
   Button,
@@ -69,9 +69,9 @@ const EditPlant = () => {
   const history = useHistory();
   const { user } = useContext(UserContext);
   const [formInput, setFormInput] = useState({
-    type: "English Ash",
-    nickname: "Pokey Boi",
-    frequency: "Everyday",
+    type: "",
+    nickname: "",
+    frequency: "",
   });
 
   const handleChange = (e) => {
@@ -81,21 +81,33 @@ const EditPlant = () => {
     });
   };
 
-  console.log(formInput);
+  useEffect(() => {
+    axiosWithAuth()
+      .post(`https://water-my-plants-365.herokuapp.com/api/plants/${plantId}`)
+      .then((res) => {
+        setFormInput({
+          type: res.data.species,
+          nickname: res.data.nickname,
+          frequency: res.data.H2oFrequency,
+        });
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+  }, [plantId]);
 
   const upDate = (e) => {
     e.preventDefault();
     const plantInfo = {
       nickname: formInput.nickname,
       species: formInput.type,
-      H20Frequency: formInput.frequency,
+      H2oFrequency: formInput.frequency,
       id: plantId,
       user_id: user.id,
     };
     axiosWithAuth()
       .post(`https://water-my-plants-365.herokuapp.com/api/plants`, plantInfo)
       .then((res) => {
-        console.log("res:", res);
         history.push("/myplants");
       })
       .catch((err) => {

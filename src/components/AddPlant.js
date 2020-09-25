@@ -109,13 +109,7 @@ const AddPlant = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-
-    console.log(formData.type.length);
-    console.log(formData.name.length);
-    console.log(formData.frequency.length);
   };
-
-  console.log(formData);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -125,14 +119,12 @@ const AddPlant = () => {
       H2oFrequency: formData.frequency,
       user_id: user.id,
     };
-    console.log(`This is the object we're sending: ${plantData}`);
 
     axios
       .post("https://water-my-plants-365.herokuapp.com/api/plants", plantData, {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("res", res);
         setFormData({
           type: "",
           name: "",

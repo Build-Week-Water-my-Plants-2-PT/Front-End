@@ -68,7 +68,6 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    console.log(credentials);
     axios
       .post(
         "https://water-my-plants-365.herokuapp.com/api/auth/login",
