@@ -72,7 +72,8 @@ const Login = () => {
     axios
       .post(
         "https://water-my-plants-365.herokuapp.com/api/auth/login",
-        credentials
+        credentials,
+        { withCredentials: true }
       )
       .then((res) => {
         localStorage.setItem("token", res.data.token);

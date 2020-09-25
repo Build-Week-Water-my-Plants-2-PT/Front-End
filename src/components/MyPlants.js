@@ -89,7 +89,8 @@ const MyPlants = () => {
       console.log(`About to to send GET request`);
       axiosWithAuth()
         .get(
-          `https://water-my-plants-365.herokuapp.com/api/plants/users/${user.id}/plants`
+          `https://water-my-plants-365.herokuapp.com/api/plants/users/${user.id}/plants`,
+          { withCredentials: true }
         )
         .then((res) => {
           console.log("Successful request");

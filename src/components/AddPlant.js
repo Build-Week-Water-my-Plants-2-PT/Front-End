@@ -127,7 +127,9 @@ const AddPlant = () => {
     console.log(`This is the object we're sending: ${plantData}`);
 
     axiosWithAuth()
-      .post("https://water-my-plants-365.herokuapp.com/api/plants", plantData)
+      .post("https://water-my-plants-365.herokuapp.com/api/plants", plantData, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("res", res);
         setFormData({
