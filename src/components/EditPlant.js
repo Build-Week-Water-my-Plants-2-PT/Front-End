@@ -83,7 +83,7 @@ const EditPlant = () => {
 
   useEffect(() => {
     axiosWithAuth()
-      .post(`https://water-my-plants-365.herokuapp.com/api/plants/${plantId}`)
+      .get(`https://water-my-plants-365.herokuapp.com/api/plants/${plantId}`)
       .then((res) => {
         setFormInput({
           type: res.data.species,
