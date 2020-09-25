@@ -106,7 +106,7 @@ const EditPlant = () => {
       user_id: user.id,
     };
     axiosWithAuth()
-      .post(`https://water-my-plants-365.herokuapp.com/api/plants`, plantInfo)
+      .put(`https://water-my-plants-365.herokuapp.com/api/plants`, plantInfo)
       .then((res) => {
         history.push("/myplants");
       })
