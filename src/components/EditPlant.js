@@ -111,6 +111,7 @@ const EditPlant = () => {
         plantInfo
       )
       .then((res) => {
+        console.log(res.data);
         history.push("/myplants");
       })
       .catch((err) => {

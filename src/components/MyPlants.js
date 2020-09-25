@@ -108,15 +108,10 @@ const MyPlants = () => {
         `https://water-my-plants-365.herokuapp.com/api/plants/${removeId}`
       )
       .then((res) => {
-        console.log(res.data);
-        console.log("This is the id: " + removeId);
-        console.log(plants);
         setPlants(plants.filter((plant) => plant.id !== parseInt(removeId)));
       })
       .catch((err) => console.error(err));
   };
-
-  console.log(plants);
 
   return (
     <div className={classes.root}>
