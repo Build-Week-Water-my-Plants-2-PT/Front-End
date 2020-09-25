@@ -60,6 +60,7 @@ const useStyles = makeStyles({
 const MyPlants = () => {
   const { user } = useContext(UserContext);
   const classes = useStyles();
+  axios.defaults.withCredentials = true;
   const [plants, setPlants] = useState([
     {
       id: 1,
@@ -87,7 +88,8 @@ const MyPlants = () => {
   useEffect(() => {
     if (user.id) {
       console.log(`About to to send GET request`);
-      axiosWithAuth()
+
+      axios
         .get(
           `https://water-my-plants-365.herokuapp.com/api/plants/users/${user.id}/plants`
         )
