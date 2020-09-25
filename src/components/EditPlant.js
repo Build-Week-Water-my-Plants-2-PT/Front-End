@@ -105,15 +105,13 @@ const EditPlant = () => {
       user_id: user.id,
     };
 
-    console.log(plantInfo);
     axiosWithAuth()
       .put(
         `https://water-my-plants-365.herokuapp.com/api/plants/${plantId}`,
         plantInfo
       )
       .then((res) => {
-        console.log(res.data);
-        // history.push("/myplants");
+        history.push("/myplants");
       })
       .catch((err) => {
         console.log("err:", err);
@@ -165,16 +163,14 @@ const EditPlant = () => {
             </MenuItem>
           </Select>
 
-          <Link to="/myplants">
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              type="submit"
-            >
-              Save
-            </Button>
-          </Link>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            type="submit"
+          >
+            Save
+          </Button>
         </form>
       </Card>
     </div>
