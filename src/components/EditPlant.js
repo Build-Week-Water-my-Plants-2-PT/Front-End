@@ -113,7 +113,7 @@ const EditPlant = () => {
       )
       .then((res) => {
         console.log(res.data);
-        history.push("/myplants");
+        // history.push("/myplants");
       })
       .catch((err) => {
         console.log("err:", err);
