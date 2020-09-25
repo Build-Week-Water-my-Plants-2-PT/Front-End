@@ -101,6 +101,8 @@ const MyPlants = () => {
   }, [user.id]);
 
   const handleRemoveClick = (e) => {
+    e.persist();
+
     axiosWithAuth()
       .delete(
         `https://water-my-plants-365.herokuapp.com/api/plants/${e.currentTarget.id}`
