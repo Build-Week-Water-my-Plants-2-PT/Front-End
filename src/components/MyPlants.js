@@ -102,18 +102,16 @@ const MyPlants = () => {
 
   const handleRemoveClick = (e) => {
     e.persist();
-
+    const removeId = e.currentTarget.id;
     axiosWithAuth()
       .delete(
-        `https://water-my-plants-365.herokuapp.com/api/plants/${e.currentTarget.id}`
+        `https://water-my-plants-365.herokuapp.com/api/plants/${removeId}`
       )
       .then((res) => {
         console.log(res.data);
-        console.log("This is the id: " + e.currentTarget.id);
+        console.log("This is the id: " + removeId);
         console.log(plants);
-        setPlants(
-          plants.filter((plant) => plant.id !== parseInt(e.currentTarget.id))
-        );
+        setPlants(plants.filter((plant) => plant.id !== parseInt(removeId)));
       })
       .catch((err) => console.error(err));
   };
