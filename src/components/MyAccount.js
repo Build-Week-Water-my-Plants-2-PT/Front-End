@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 
 const MyAccount = () => {
   const classes = useStyles();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [formInput, setFormInput] = useState({
     username: user.username,
@@ -84,6 +84,11 @@ const MyAccount = () => {
         userData
       )
       .then((res) => {
+        setUser({
+          id: res.data.id,
+          username: res.data.username,
+          phoneNumber: res.data.phone_number,
+        });
         console.log("res:", res);
       })
       .catch((err) => {
