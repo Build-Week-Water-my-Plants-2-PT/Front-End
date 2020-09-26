@@ -4,6 +4,7 @@ import { Card, Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { SettingsRemote } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
@@ -72,7 +73,6 @@ const MyAccount = () => {
   const upDate = (e) => {
     e.preventDefault();
     const userData = {
-      id: user.id,
       username: user.username,
       password: formInput.password,
       phone_number: formInput.phoneNumber,
