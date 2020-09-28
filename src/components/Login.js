@@ -47,6 +47,10 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6b7280",
     },
+    "&:disabled": {
+      backgroundColor: "grey",
+      color: "white",
+    },
   },
 });
 
@@ -115,6 +119,7 @@ const Login = () => {
                 color="primary"
                 type="submit"
                 className={classes.button}
+                disabled={credentials.username.length<1 || credentials.password.length<1}
               >
                 Log In
               </Button>
