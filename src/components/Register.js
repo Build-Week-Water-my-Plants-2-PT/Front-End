@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/userContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, Button, TextField } from "@material-ui/core";
+import * as yup from 'yup';
 
 const useStyles = makeStyles({
   root: {
@@ -47,7 +48,23 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6b7280",
     },
+    "&:disabled": {
+      backgroundColor: "grey",
+      color: "white"
+    },
   },
+
+  errors: {
+    color: "red",
+  },
+});
+
+const formSchema = yup.object().shape({
+  username: yup.string().required("Please, include your name"),
+  phone_number: yup.string().required("Please, inclued your 10 digit phone number"),
+  password: yup
+    .string()
+    .required("Please, choose a password"),
 });
 
 const Register = ({ setValue }) => {
@@ -60,9 +77,36 @@ const Register = ({ setValue }) => {
     password: "",
   });
 
+  const [errors, setErrors] = useState({
+    username: "",
+    phone_number: "",
+    password: "",
+  });
+
+  const validate = (e) => {
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
+        });
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0],
+        });
+      });
+  };
+
   const handleChange = (e) => {
+    e.persist()
+    validate(e)
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
 
   const register = (e) => {
     e.preventDefault();
@@ -100,6 +144,8 @@ const Register = ({ setValue }) => {
                 name="username"
                 onChange={handleChange}
               />
+                {errors.username.length > 0 ? ( <p className={classes.errors}>{errors.username}</p> ) : null}
+
               <TextField
                 className={classes.textField}
                 id="phoneNumber"
@@ -109,6 +155,8 @@ const Register = ({ setValue }) => {
                 onChange={handleChange}
               />
 
+            {errors.phone_number.length > 0 ? ( <p className={classes.errors}>{errors.phone_number}</p> ) : null}
+
               <TextField
                 id="password"
                 label="Password"
@@ -117,11 +165,15 @@ const Register = ({ setValue }) => {
                 type="password"
                 onChange={handleChange}
               />
+
+            {errors.password.length > 0 ? ( <p className={classes.errors}>{errors.password}</p> ) : null}
+
               <Button
                 variant="contained"
                 color="primary"
                 type="submit"
                 className={classes.button}
+                disabled={credentials.username.length<1 || credentials.phone_number.length<10 || credentials.password<1}
               >
                 Create My Account
               </Button>
